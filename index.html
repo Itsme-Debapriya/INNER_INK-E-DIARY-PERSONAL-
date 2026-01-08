@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INNER INK ✍️</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="logo.png" />
+  </head>
+  <body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+      <div class="login-box">
+        <div class="diary-icon">📔</div>
+        <h1 class="login-title">My Secret Diary</h1>
+        <p class="login-subtitle">✨ Enter your heart's key ✨</p>
+
+        <div class="password-input-wrapper" style="position: relative">
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="🔐 Password"
+            class="password-input"
+          />
+          <button id="togglePassword" type="button" class="toggle-password">
+            👁️
+          </button>
+        </div>
+
+        <button id="loginBtn" class="login-btn">
+          <span>Unlock My Memories</span>
+        </button>
+
+        <div id="loginError" class="error-message"></div>
+
+        <p class="first-time-hint">💡 First time? Just set your password!</p>
+      </div>
+    </div>
+
+    <!-- Main Diary Screen -->
+    <div id="diaryScreen" class="diary-container" style="display: none">
+      <!-- Header -->
+      <header class="diary-header">
+        <div class="header-content">
+          <h1 class="diary-main-title">
+            <span class="diary-emoji">📖</span>
+            INNER_INK
+            <span class="diary-emoji">✨</span>
+          </h1>
+          <p class="diary-tagline">Where thoughts become memories...</p>
+        </div>
+        <button id="logoutBtn" class="logout-btn" title="Lock Diary">
+          🔒 Lock
+        </button>
+      </header>
+
+      <!-- New Entry Section -->
+      <div class="new-entry-section">
+        <div class="entry-card">
+          <div class="card-header">
+            <h2 class="section-title">✍️ Write Your Heart Out</h2>
+            <div class="mood-selector">
+              <span class="mood-label">Today's Mood:</span>
+              <select id="moodSelector" class="mood-select">
+                <option value="😊">😊 Happy</option>
+                <option value="😔">😔 Sad</option>
+                <option value="😍">😍 Loved</option>
+                <option value="😤">😤 Angry</option>
+                <option value="😴">😴 Tired</option>
+                <option value="🤔">🤔 Thoughtful</option>
+                <option value="🎉">🎉 Excited</option>
+                <option value="😌">😌 Peaceful</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="entry-title-wrapper">
+            <input
+              type="text"
+              id="entryTitle"
+              placeholder="📝 Give your entry a title..."
+              class="entry-title-input"
+            />
+          </div>
+
+          <textarea
+            id="entryText"
+            placeholder="Dear Diary,&#10;&#10;Today was..."
+            class="entry-textarea"
+          ></textarea>
+
+          <div class="entry-actions">
+            <div class="image-upload-section">
+              <label for="imageUpload" class="upload-label">
+                📷 Add Photo
+              </label>
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                class="file-input"
+              />
+              <div id="imagePreview" class="image-preview"></div>
+            </div>
+
+            <div class="action-buttons">
+              <button
+                id="cancelBtn"
+                class="btn btn-cancel"
+                style="display: none"
+              >
+                ❌ Cancel
+              </button>
+              <button id="saveEntryBtn" class="btn btn-save">
+                💾 Save Entry
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entries List -->
+      <div class="entries-section">
+        <div class="entries-header">
+          <h2 class="section-title">📚 My Memories</h2>
+          <div class="entries-count">
+            <span id="entriesCount">0 entries</span>
+          </div>
+        </div>
+
+        <div id="entriesList" class="entries-list">
+          <!-- Entries will be dynamically added here -->
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">📔</div>
+          <h3>Your diary is waiting...</h3>
+          <p>Start writing your first memory today! ✨</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

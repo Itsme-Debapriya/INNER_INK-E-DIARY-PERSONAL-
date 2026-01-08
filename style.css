@@ -1,0 +1,763 @@
+/* ===================================
+   GOOGLE FONTS - Handwritten Style
+   =================================== */
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand&family=Caveat:wght@400;700&display=swap");
+
+/* ===================================
+   RESET & BASE STYLES
+   =================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Patrick Hand", cursive;
+  background: url('https://images.unsplash.com/photo-1509043759401-136742328bb3?q=80&w=2070') center/cover fixed;
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Soft overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+}
+
+/* Login container should NOT override background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Animated background hearts */
+.login-container::before {
+  content: "💝 ✨ 🌸 💕 ⭐ 🦋 💫 🌺 🌷 🎀 ✨ 💖";
+  position: absolute;
+  font-size: 40px;
+  opacity: 0.15;
+  animation: float 20s infinite;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+}
+
+.login-container::after {
+  content: "🌙 ⭐ 💫 ✨ 🌟 💝 🦋 🌸";
+  position: absolute;
+  font-size: 30px;
+  opacity: 0.1;
+  animation: floatReverse 25s infinite;
+  white-space: nowrap;
+  bottom: 20%;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(180deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(50px) translateY(-30px);
+  }
+}
+
+.login-box {
+  background: rgba(199, 199, 199, 0.98);
+  padding: 50px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  backdrop-filter: blur(20px);
+  animation: slideDown 0.6s ease-out;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+
+.diary-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.login-title {
+  font-family: "Caveat", cursive;
+  font-size: 42px;
+  color: #667eea;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.login-subtitle {
+  font-size: 18px;
+  color: #764ba2;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.password-input-wrapper {
+  margin-bottom: 20px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-family: "Patrick Hand", cursive;
+  border: 3px solid #667eea;
+  border-radius: 15px;
+  outline: none;
+  transition: all 0.3s;
+  background: #f8f9ff;
+}
+
+.password-input:focus {
+  border-color: #764ba2;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  transform: scale(1.02);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  font-family: "Patrick Hand", cursive;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 16px;
+  margin-top: 15px;
+  min-height: 20px;
+  font-weight: bold;
+}
+
+.first-time-hint {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+/* ===================================
+   MAIN DIARY SCREEN STYLES
+   =================================== */
+.diary-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Header */
+.diary-header {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 182, 193, 0.1) 35px,
+    rgba(255, 182, 193, 0.1) 37px
+  );
+}
+
+.header-content {
+  text-align: center;
+}
+
+.diary-main-title {
+  font-family: "Caveat", cursive;
+  font-size: 48px;
+  color: #ff6b9d;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.diary-emoji {
+  display: inline-block;
+  animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+.diary-tagline {
+  font-size: 18px;
+  color: #666;
+  font-style: italic;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "Patrick Hand", cursive;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(245, 87, 108, 0.3);
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(245, 87, 108, 0.5);
+}
+
+/* New Entry Section */
+.new-entry-section {
+  margin-bottom: 30px;
+}
+
+.entry-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-left: 5px solid #ff6b9d;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-left: 5px solid #ff6b9d;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.section-title {
+  font-family: "Caveat", cursive;
+  font-size: 32px;
+  color: #ff6b9d;
+  font-weight: 700;
+}
+
+.mood-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mood-label {
+  font-size: 16px;
+  color: #666;
+}
+
+.mood-select {
+  padding: 8px 15px;
+  font-size: 18px;
+  font-family: "Patrick Hand", cursive;
+  border: 2px solid #ff6b9d;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background: white;
+  transition: all 0.3s;
+}
+
+.mood-select:hover {
+  border-color: #ff1493;
+  transform: scale(1.05);
+}
+
+.entry-title-wrapper {
+  margin-bottom: 15px;
+}
+
+.entry-title-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 22px;
+  font-family: "Indie Flower", cursive;
+  border: 2px solid #ffc6d9;
+  border-radius: 10px;
+  outline: none;
+  background: #fff9fb;
+  transition: all 0.3s;
+}
+
+.entry-title-input:focus {
+  border-color: #ff6b9d;
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.2);
+}
+
+.entry-textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 15px;
+  font-size: 18px;
+  font-family: "Indie Flower", cursive;
+  border: 2px solid #ffc6d9;
+  border-radius: 10px;
+  outline: none;
+  resize: vertical;
+  background: #fff9fb;
+  line-height: 1.8;
+  transition: all 0.3s;
+}
+
+.entry-textarea:focus {
+  border-color: #ff6b9d;
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.2);
+}
+
+/* Entry Actions */
+.entry-actions {
+  margin-top: 20px;
+}
+
+.image-upload-section {
+  margin-bottom: 20px;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "Patrick Hand", cursive;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: #333;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(168, 237, 234, 0.3);
+}
+
+.upload-label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(168, 237, 234, 0.5);
+}
+
+.file-input {
+  display: none;
+}
+
+.image-preview {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.preview-img-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.preview-img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 10px;
+  display: block;
+}
+
+.remove-img-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(231, 76, 60, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.remove-img-btn:hover {
+  background: rgba(192, 57, 43, 1);
+  transform: scale(1.1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-family: "Patrick Hand", cursive;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+}
+
+.btn-save:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(250, 112, 154, 0.5);
+}
+
+.btn-cancel {
+  background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+  color: #333;
+}
+
+.btn-cancel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(189, 189, 189, 0.5);
+}
+
+/* Entries Section */
+.entries-section {
+  margin-top: 40px;
+}
+
+.entries-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.entries-count {
+  font-size: 16px;
+  color: #666;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual Entry Card */
+.entry-item {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-left: 5px solid #c77dff;
+  animation: slideIn 0.5s ease-out;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-left: 5px solid #c77dff;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.entry-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.entry-date-mood {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.entry-date {
+  font-size: 14px;
+  color: #888;
+  font-weight: normal;
+}
+
+.entry-mood {
+  font-size: 24px;
+}
+
+.entry-title-display {
+  font-family: "Caveat", cursive;
+  font-size: 28px;
+  color: #c77dff;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.entry-content {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 15px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.entry-images {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.entry-img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.entry-img:hover {
+  transform: scale(1.05);
+}
+
+.entry-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-family: "Patrick Hand", cursive;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  color: #333;
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(253, 203, 110, 0.5);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+  color: white;
+}
+
+.btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(214, 48, 49, 0.5);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  margin-top: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-family: "Caveat", cursive;
+  font-size: 32px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  font-size: 18px;
+  color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .diary-container {
+    padding: 20px 10px;
+  }
+
+  .diary-main-title {
+    font-size: 36px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logout-btn {
+    position: static;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ff6b9d 0%, #c77dff 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ff1493 0%, #9d4edd 100%);
+}
