@@ -1,18 +1,19 @@
-# 📖 Inner Ink – Personal E-Diary Website
+# ✍️ Inner Ink – Personal E-Diary Website
 
 Inner Ink is a private, aesthetic e-diary website built using **HTML, CSS, and JavaScript**.  
 It is designed to feel like a real personal diary where you can safely write daily thoughts, add moods, upload images, and save memories date-wise and time-wise in a beautiful, calming interface.
 
 
 <p align="center">
-  <img src="logo.png" alt="Inner Ink Logo" width="180">
+  <img src="logo.png" width="180" alt="Inner Ink Logo">
 </p>
 
-<h1 align="center">📖 Inner Ink – Personal E-Diary Website</h1>
+<h1 align="center">
+  <a href="https://itsme-debapriya.github.io/INNER_INK-E-DIARY-PERSONAL-/">
+    ✍️ Inner Ink – Personal E-Diary Website
+  </a>
+</h1>
 
-## 🚀 Live Demo
-
-👉
 ---
 
 ## ✨ Features
